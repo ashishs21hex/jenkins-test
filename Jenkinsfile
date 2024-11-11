@@ -1,6 +1,8 @@
-@Library('jsonUtils') _  // Load the shared library
 node {
-    // Define pipeline structure as Groovy map
+    // Load the jsonUtils.groovy script
+    def jsonUtils = load 'jsonUtils.groovy'
+
+    // Define the pipeline structure as a Groovy map
     def jenkinsfileStructure = [
         pipeline: [
             agent: "any",
@@ -22,6 +24,6 @@ node {
         ]
     ]
 
-    // Use the utility function to save JSON in a separate file
+    // Use the utility function from jsonUtils to save JSON in a separate file
     jsonUtils.saveAsPrettyJson(jenkinsfileStructure, 'jenkinsfile_structure.json')
 }
